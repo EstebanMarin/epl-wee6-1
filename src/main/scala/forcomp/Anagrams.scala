@@ -87,7 +87,7 @@ object Anagrams extends AnagramsInterface:
 
   // type Occurrences = List[(Char, Int)]
   lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = 
-    Map(List(('a', 1), ('e', 1), ('t', 1)) -> List("ate", "eat", "tea"))
+    dictionary.groupBy[Occurrences](wordOccurrences)
 
   /** Returns all the anagrams of a given word. */
   def wordAnagrams(word: Word): List[Word] = ???
