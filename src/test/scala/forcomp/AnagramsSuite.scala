@@ -46,13 +46,13 @@ class AnagramsSuite extends munit.FunSuite:
     assertEquals(dictionaryByOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet), Some(Set("ate", "eat", "tea")))
   }
 
-  // test("wordAnagrams married (2pts)") {
-  //   assertEquals(wordAnagrams("married").toSet, Set("married", "admirer"))
-  // }
+  test("wordAnagrams married (2pts)") {
+    assertEquals(wordAnagrams("married").toSet, Set("married", "admirer"))
+  }
 
-  // test("wordAnagrams player (2pts)") {
-  //   assertEquals(wordAnagrams("player").toSet, Set("parley", "pearly", "player", "replay"))
-  // }
+  test("wordAnagrams player (2pts)") {
+    assertEquals(wordAnagrams("player").toSet, Set("parley", "pearly", "player", "replay"))
+  }
 
   // test("subtract: lard - r (10pts)") {
   //   val lard = List(('a', 1), ('d', 1), ('l', 1), ('r', 1))
