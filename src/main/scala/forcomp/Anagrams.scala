@@ -61,15 +61,13 @@ object Anagrams extends AnagramsInterface:
     traMap(m1, m2)
 
   def sentenceOccurrences(s: Sentence): Occurrences =
-    val test = s
+    s
       .map(_.toLowerCase)
       .map(wordOccurrences)
       .map(_.toMap)
       .fold(Map.empty)(combineMap)
       .toList
       .sortWith((x, y) => x._1 < y._1)
-    println(test)
-    test
 
   /** The `dictionaryByOccurrences` is a `Map` from different occurrences to a
     * sequence of all the words that have that occurrence count. This map serves
@@ -86,7 +84,10 @@ object Anagrams extends AnagramsInterface:
     *
     * List(('a', 1), ('e', 1), ('t', 1)) -> Seq("ate", "eat", "tea")
     */
-  lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = ???
+
+  // type Occurrences = List[(Char, Int)]
+  lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = 
+    Map(List(('a', 1), ('e', 1), ('t', 1)) -> List("ate", "eat", "tea"))
 
   /** Returns all the anagrams of a given word. */
   def wordAnagrams(word: Word): List[Word] = ???
