@@ -24,9 +24,23 @@ class AnagramsSuite extends munit.FunSuite:
     )
   }
 
-  // test("sentenceOccurrences: abcd e (5pts)") {
-  //   assertEquals(sentenceOccurrences(List("abcd", "e")), List(('a', 1), ('b', 1), ('c', 1), ('d', 1), ('e', 1)))
+  // test("test combine helper function"){
+
   // }
+
+  test("sentenceOccurrences: abcd e (5pts)") {
+    assertEquals(
+      sentenceOccurrences(List("abcd", "e")),
+      List(('a', 1), ('b', 1), ('c', 1), ('d', 1), ('e', 1))
+    )
+  }
+
+  test("sentenceOccurrences: abcd e abcd") {
+    assertEquals(
+      sentenceOccurrences(List("abcde", "abdc")),
+      List(('a', 2), ('b', 2), ('c', 2), ('d', 2), ('e', 1))
+    )
+  }
 
   // test("dictionaryByOccurrences.get: eat (10pts)") {
   //   assertEquals(dictionaryByOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet), Some(Set("ate", "eat", "tea")))

@@ -44,8 +44,32 @@ object Anagrams extends AnagramsInterface:
       .map(x => (x._1, x._2.size))
       .sortWith((x, y) => x._1 < y._1)
 
+  // def combineMap(m1: Map[(Char, Int)], m2: Map[(Char, Int)]) = ???
+
   /** Converts a sentence into its character occurrence list. */
-  def sentenceOccurrences(s: Sentence): Occurrences = ???
+  def combineMap(m1: Map[Char, Int], m2: Map[Char, Int]): Map[Char, Int] =
+    def traMap(m1t: Map[Char, Int], acc: Map[Char, Int]): Map[Char, Int] =
+      if m1t.isEmpty then acc
+      else
+        val head = m1t.head
+        if m2.contains(head._1) then
+          traMap(
+            m1t.removed(head._1),
+            acc.updated(head._1, m2(head._1) + head._2)
+          )
+        else traMap(m1t.removed(head._1), acc ++ Map(head))
+    traMap(m1, m2)
+
+  def sentenceOccurrences(s: Sentence): Occurrences =
+    val test = s
+      .map(_.toLowerCase)
+      .map(wordOccurrences)
+      .map(_.toMap)
+      .fold(Map.empty)(combineMap)
+      .toList
+      .sortWith((x, y) => x._1 < y._1)
+    println(test)
+    test
 
   /** The `dictionaryByOccurrences` is a `Map` from different occurrences to a
     * sequence of all the words that have that occurrence count. This map serves
