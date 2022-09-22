@@ -108,7 +108,13 @@ object Anagrams extends AnagramsInterface:
     * subsets in the example above could have been displayed in some other
     * order.
     */
-  def combinations(occurrences: Occurrences): List[Occurrences] = ???
+  def combinations(occurrences: Occurrences): List[Occurrences] = 
+    val test = 
+    for 
+      occurrence <- occurrences
+    yield occurrences
+    println(test)
+    test
 
   /** Subtracts occurrence list `y` from occurrence list `x`.
     *
