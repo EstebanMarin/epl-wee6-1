@@ -86,11 +86,11 @@ object Anagrams extends AnagramsInterface:
     */
 
   // type Occurrences = List[(Char, Int)]
-  lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] = 
+  lazy val dictionaryByOccurrences: Map[Occurrences, List[Word]] =
     dictionary.groupBy[Occurrences](wordOccurrences)
 
   /** Returns all the anagrams of a given word. */
-  def wordAnagrams(word: Word): List[Word] = 
+  def wordAnagrams(word: Word): List[Word] =
     dictionaryByOccurrences.getOrElse(wordOccurrences(word), Nil)
 
   /** Returns the list of all subsets of the occurrence list. This includes the
@@ -108,14 +108,14 @@ object Anagrams extends AnagramsInterface:
     * subsets in the example above could have been displayed in some other
     * order.
     */
-  def combinations(occurrences: Occurrences): List[Occurrences] = 
-    val test: List[Occurrences] = 
-    for 
-      (c: Char, int: Int) <- occurrences
-      // varia <- (1 to occurrence)
-    yield occurrences 
+  def combinations(occurrences: Occurrences): List[Occurrences] =
+    val test =
+      for
+        (c: Char, int: Int) <- occurrences
+        varia <- (1 to int)
+      yield s"$c => $varia"
     println(test)
-    test
+    List(occurrences)
 
   /** Subtracts occurrence list `y` from occurrence list `x`.
     *
