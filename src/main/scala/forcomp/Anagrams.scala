@@ -109,11 +109,11 @@ object Anagrams extends AnagramsInterface:
     * order.
     */
   def combinations(occurrences: Occurrences): List[Occurrences] =
-    val test =
+    val test: List[Occurrences] = 
       for
         (c: Char, int: Int) <- occurrences
         varia <- (1 to int)
-      yield s"$c => $varia"
+      yield List((c -> varia))
     println(test)
     List(occurrences)
 
