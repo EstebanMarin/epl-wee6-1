@@ -43,7 +43,12 @@ class AnagramsSuite extends munit.FunSuite:
   }
 
   test("dictionaryByOccurrences.get: eat (10pts)") {
-    assertEquals(dictionaryByOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet), Some(Set("ate", "eat", "tea")))
+    assertEquals(
+      dictionaryByOccurrences
+        .get(List(('a', 1), ('e', 1), ('t', 1)))
+        .map(_.toSet),
+      Some(Set("ate", "eat", "tea"))
+    )
   }
 
   test("wordAnagrams married (2pts)") {
@@ -51,15 +56,18 @@ class AnagramsSuite extends munit.FunSuite:
   }
 
   test("wordAnagrams player (2pts)") {
-    assertEquals(wordAnagrams("player").toSet, Set("parley", "pearly", "player", "replay"))
+    assertEquals(
+      wordAnagrams("player").toSet,
+      Set("parley", "pearly", "player", "replay")
+    )
   }
 
-  // test("subtract: lard - r (10pts)") {
-  //   val lard = List(('a', 1), ('d', 1), ('l', 1), ('r', 1))
-  //   val r = List(('r', 1))
-  //   val lad = List(('a', 1), ('d', 1), ('l', 1))
-  //   assertEquals(subtract(lard, r), lad)
-  // }
+  test("subtract: lard - r (10pts)") {
+    val lard = List(('a', 1), ('d', 1), ('l', 1), ('r', 1))
+    val r = List(('r', 1))
+    val lad = List(('a', 1), ('d', 1), ('l', 1))
+    assertEquals(subtract(lard, r), lad)
+  }
 
   test("combinations: [] (8pts)") {
     combinations(Nil)

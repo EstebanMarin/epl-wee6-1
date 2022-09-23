@@ -136,7 +136,21 @@ object Anagrams extends AnagramsInterface:
     * Note: the resulting value is an occurrence - meaning it is sorted and has
     * no zero-entries.
     */
-  def subtract(x: Occurrences, y: Occurrences): Occurrences = ???
+  def subtract(x: Occurrences, y: Occurrences): Occurrences =
+    def traY(yT: Occurrences, acc: Occurrences): Occurrences =
+      val accTM = acc.toMap
+      val yTM = yT.toMap
+      if yT.isEmpty then acc
+      else
+        val head = yTM.head
+        val char = head._1
+        if accTM.contains(char) then
+          traY(
+            yTM.removed(char).toList,
+            accTM.updated(char, (accTM(head._1) - head._2).abs).toList
+          )
+        else traY(yT.toMap.removed(char).toList, acc)
+    traY(y, x).sortWith((x, y) => x._1 < y._2).filter(x => x._2 > 0)
 
   /** Returns a list of all anagram sentences of the given sentence.
     *
