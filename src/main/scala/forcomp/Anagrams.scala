@@ -187,7 +187,21 @@ object Anagrams extends AnagramsInterface:
     *
     * Note: There is only one anagram of an empty sentence.
     */
-  def sentenceAnagrams(sentence: Sentence): List[Sentence] = ???
+
+
+
+
+  def sentenceAnagrams(sentence: Sentence): List[Sentence] =
+    val test2 = sentenceOccurrences(sentence)
+    val test = dictionaryByOccurrences.getOrElse(test2, Nil)
+
+    println(test2)
+    println(test)
+
+    def rec(sT: Sentence, acc: List[Sentence]): List[Sentence] =
+      if sT.isEmpty then acc
+      else rec(sT.tail, acc)
+    rec(sentence, List(Nil))
 
 object Dictionary:
   def loadDictionary: List[String] =
