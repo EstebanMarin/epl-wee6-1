@@ -115,11 +115,12 @@ object Anagrams extends AnagramsInterface:
         v <- (1 to int)
       yield (c -> v)
 
-    def filter(x: Occurrences): Map[Char, Int] =
+    def filter(x: Occurrences) =
       x.groupBy(x => x._1)
         .toList
         .map(x => (x._1, x._2.size))
         .toMap
+
     ((0 to allOcurrences.size) flatMap allOcurrences.combinations).toList
       .map(filter)
       .toSet
