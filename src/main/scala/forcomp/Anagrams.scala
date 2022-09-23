@@ -109,13 +109,49 @@ object Anagrams extends AnagramsInterface:
     * order.
     */
   def combinations(occurrences: Occurrences): List[Occurrences] =
-    val test: List[Occurrences] = 
+    val allOcurrences =
       for
         (c: Char, int: Int) <- occurrences
-        varia <- (1 to int)
-      yield List((c -> varia))
-    println(test)
-    List(occurrences)
+        v <- (1 to int)
+      yield (c -> v)
+    // println(s"[test] => $test")
+
+    // val test3 = List(List(('a', 1)), List(('a', 2)))
+    // val test4 = List(List(('b', 1)), List(('b', 2)))
+    // val occu2 =
+    //   List(List(('a', 1)), List(('a', 2)), List(('b', 1)), List(('b', 2)))
+
+    // val occu3 =
+    //   List(('a', 1), ('a', 2), ('b', 1), ('b', 2))
+    // // val test5 = test.groupBy(identity)
+    // val test2 =
+    //   for
+    //     x <- test3
+    //     y <- test4
+    //   yield List((x -> y))
+
+    // val test9 =
+    //   ((0 to occu3.size) flatMap occu3.combinations).toList
+
+    // println(s"[OCCU] => $test9")
+    def filter(x: Occurrences): Map[Char, Int] =
+      x.groupBy(x => x._1)
+        .toList
+        .map(x => (x._1, x._2.size)).toMap
+    val filtered =
+      ((0 to allOcurrences.size) flatMap allOcurrences.combinations).toList
+
+    val filtered2: List[Occurrences] =
+      ((0 to allOcurrences.size) flatMap allOcurrences.combinations).toList
+        .map(filter).toSet.toList.map(x => x.toList)
+    // def filtered2more(x: List[Map[Char, Int]]) = 
+    //   def recus(x2: List[Map[Char, Int]], )
+        // .foldLeft(Map.empty)((acc, x) => filter(x) + acc)
+    println(s"[test] => $allOcurrences")
+    // println(s"[filtered ] => $filtered")
+    println(s"[filtered 2] => $filtered2")
+    // List(occurrences)
+    filtered2
 
   /** Subtracts occurrence list `y` from occurrence list `x`.
     *
